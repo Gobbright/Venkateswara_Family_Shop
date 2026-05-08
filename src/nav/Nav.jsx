@@ -16,7 +16,7 @@ const Nav = () => {
 
   const otherLinks = [
     { name: "Festive Wear", path: "/festive-wear" },
-    { name: "Tailoring", path: "/other/tailoring" },
+    // { name: "Tailoring", path: "/ot  her/tailoring" },
     { name: "About", path: "/other/about" },
     { name: "Contact", path: "/other/contact" },
     { name: "Track Order", path: "/order/track" },
