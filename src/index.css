@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rowdies:wght@300;400;700&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  html,
+  #root {
+    overflow-x: clip;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    overflow-x: clip;
+    font-family: "Poppins", sans-serif;
+    @apply bg-white text-slate-900 antialiased;
+  }
+
+  p,
+  div {
+    font-family: "Poppins", sans-serif !important;
+  }
+}
+
+@keyframes brand-logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.brand-logo-track {
+  animation: brand-logo-scroll 22s linear infinite;
+}
+
+.brand-logo-track:hover {
+  animation-play-state: paused;
+}
