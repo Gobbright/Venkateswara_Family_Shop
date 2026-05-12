@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import bannerImg from "../assets/Images/Home/11.png";
+import bgImg from "../assets/Images/bg.png";
 import { ArrowRight } from "lucide-react";
 
 const Offer = () => {
   return (
-    <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-8 sm:py-10 md:py-12 bg-[#FAF0E6]">
+    <div
+      className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-8 sm:py-10 md:py-12"
+      style={{
+        backgroundColor: "#FAF0E6",
+        backgroundImage: `linear-gradient(rgba(250,240,230,0.78), rgba(250,240,230,0.78)), url(${bgImg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="relative w-full rounded-2xl overflow-hidden flex items-stretch min-h-[330px] sm:min-h-[390px] md:min-h-[450px] bg-[#7ECDD1] shadow-[0_8px_30px_rgba(0,0,0,0.15)]">
         <img
           src={bannerImg}

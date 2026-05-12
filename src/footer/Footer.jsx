@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, X } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaWhatsapp, FaYoutube } from "react-icons/fa6";
-import logoImg from "../assets/Images/sri-venkateswara-logo.png";
+import footerLogo from "../assets/Images/sri-venkateswara-logo.png";
 
 const footerModals = {
   privacy: {
     title: "Privacy Policy",
     content:
-      "Sri Venkateswara Family Shopping respects your privacy and protects the personal details you share with us. We may collect your name, phone number, email address, delivery address, and order details only to process purchases, provide customer support, send order updates, and improve your shopping experience. We do not sell your personal information to third parties. Payment information is handled through trusted and secure payment providers. You may contact our support team to update your details or request help regarding your information.",
+      "Sri Venkateswara Family Shop respects your privacy and protects the personal details you share with us. We may collect your name, phone number, email address, delivery address, and order details only to process purchases, provide customer support, send order updates, and improve your shopping experience. We do not sell your personal information to third parties. Payment information is handled through trusted and secure payment providers. You may contact our support team to update your details or request help regarding your information.",
   },
   terms: {
     title: "Terms of Service",
     content:
-      "By using this website, you agree to shop responsibly and provide accurate order, contact, and delivery information. Product images, colors, prices, and availability may vary slightly based on screen display, stock, and store updates. Orders are confirmed after successful payment or store approval. Cancellations, returns, and exchanges may depend on product type, usage condition, and store policy. Sri Venkateswara Family Shopping may update website content, offers, and service terms whenever required.",
+      "By using this website, you agree to shop responsibly and provide accurate order, contact, and delivery information. Product images, colors, prices, and availability may vary slightly based on screen display, stock, and store updates. Orders are confirmed after successful payment or store approval. Cancellations, returns, and exchanges may depend on product type, usage condition, and store policy. Sri Venkateswara Family Shop may update website content, offers, and service terms whenever required.",
   },
 };
 
@@ -29,7 +29,9 @@ const Footer = () => {
 
         {/* Column 1 - Logo + About */}
         <div className="flex flex-col gap-4 md:col-span-1 md:pr-8 md:border-r md:border-white/20">
-          <img src={logoImg} alt="Sri Venkateswara" className="h-16 w-auto bg-white rounded p-1" />
+          <div className="inline-flex w-fit flex-col gap-2 rounded-lg border border-white/35 bg-white/95 px-4 py-3 shadow-sm">
+            <img src={footerLogo} alt="Sri Venkateswara Family Shop" className="h-16 w-auto max-w-[230px] object-contain" />
+          </div>
           <p className="text-sm text-white/80 leading-relaxed">
             Crafting timeless textiles since 1999. Where tradition meets contemporary elegance.
           </p>
@@ -54,10 +56,10 @@ const Footer = () => {
           <h3 className="text-lg font-bold text-orange-300 mb-1">Quick Links</h3>
           <Link to="/home" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Home</Link>
           <Link to="/mens" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Shop</Link>
+          <Link to="/video-call" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Video Call</Link>
           <Link to="/other/about" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">About</Link>
           <Link to="/other/contact" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Contact</Link>
-          <Link to="/other/tailoring" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Tailoring</Link>
-          <Link to="/home#categories" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Categories</Link>
+          <Link to="/categories" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Categories</Link>
         </div>
 
         {/* Column 3 - Categories */}
@@ -66,6 +68,8 @@ const Footer = () => {
           <Link to="/mens" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Men</Link>
           <Link to="/womens" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Women</Link>
           <Link to="/kids" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Kids</Link>
+          <Link to="/accessories" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Accessories</Link>
+          <Link to="/today-deals" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Weekly Offers</Link>
           <Link to="/festive-wear" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Festive Wear</Link>
           <Link to="/order/track" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Track Order</Link>
         </div>
@@ -75,7 +79,7 @@ const Footer = () => {
           <h3 className="text-lg font-bold text-orange-300 mb-1">Contact</h3>
           <span className="flex items-start gap-2 text-base text-white/80">
             <MapPin size={18} className="mt-0.5 shrink-0" />
-            142, East Masi Street, Trichy, Tamil Nadu 625001
+            Mosque Building, 7, Manthai street, Thennur High Rd, opp. to Tennur, Tiruchirappalli, Tamil Nadu 620017
           </span>
           <span className="flex items-center gap-2 text-base text-white/80">
             <Phone size={18} className="shrink-0" />
@@ -92,7 +96,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="flex flex-col md:flex-row items-center justify-between pt-6 gap-3 text-sm text-white/70">
         <p>
-          (c) 2026 Venkateswara Textiles. All rights reserved. Developed by{" "}
+          <span className="text-lg">&copy;</span> 2026 <span className="font-semibold text-orange-300">Sri Venkateswara Family Shop</span>. All rights reserved. Developed by{" "}
           <a
             href="https://gobrightglobal.com/"
             target="_blank"

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Shield, RotateCcw, Lock, Headphones } from "lucide-react";
+import bgImg from "../assets/Images/bg.png";
 
 const trustItems = [
   {
@@ -25,56 +25,23 @@ const trustItems = [
 ];
 
 function TrustCard({ icon: Icon, title, description }) {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="flex flex-col items-center text-center rounded-2xl w-full"
-      style={{
-        background: hovered
-          ? "linear-gradient(135deg, #e2e2e2 0%, #FFE4C7 55%, #c4dfdd 100%)"
-          : "#FFFAF6",
-        boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
-        padding: "22px 24px",
-        transition: "background 0.3s ease, box-shadow 0.3s ease",
-        cursor: "pointer",
-      }}
-    >
-      {/* Icon Circle — stays orange always */}
-      <div
-        className="flex items-center justify-center rounded-full mb-5"
-        style={{
-          backgroundColor: hovered ? "#FFE4C7" : "#E8510A",
-          width: "58px",
-          height: "58px",
-          flexShrink: 0,
-          transition: "background-color 0.3s ease, transform 0.3s ease",
-          transform: hovered ? "scale(1.08)" : "scale(1)",
-        }}
-      >
-        <Icon size={24} color={hovered ? "#E8510A" : "#ffffff"} strokeWidth={1.8} />
+    <div className="group relative flex w-full cursor-pointer flex-col items-center overflow-hidden rounded-xl border border-orange-100 bg-white px-6 py-7 text-center shadow-[0_6px_20px_rgba(26,10,0,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-orange-300 hover:bg-[#fff8ef] hover:shadow-[0_18px_38px_rgba(232,81,10,0.18)]">
+      <span className="absolute inset-x-0 top-0 h-1 scale-x-0 bg-gradient-to-r from-orange-600 via-[#FFBE8A] to-[#4DA7AF] transition-transform duration-300 group-hover:scale-x-100" />
+      <span className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[#4DA7AF]/0 transition duration-300 group-hover:bg-[#4DA7AF]/12" />
+
+      <div className="relative mb-5 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-orange-600 text-white shadow-[0_10px_24px_rgba(232,81,10,0.24)] transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-orange-600 group-hover:shadow-[0_12px_28px_rgba(77,167,175,0.24)]">
+        <Icon size={26} strokeWidth={1.9} />
       </div>
 
-      {/* Title — turns blue on hover */}
       <h3
-        className="text-base font-bold mb-2"
-        style={{
-          color: "#1a0a00",
-          fontFamily: "Georgia, serif",
-        }}
+        className="mb-2 text-base font-bold text-[#1a0a00] transition-colors duration-300 group-hover:text-orange-700"
+        style={{ fontFamily: "Georgia, serif" }}
       >
         {title}
       </h3>
 
-      {/* Description — turns blue on hover */}
-      <p
-        className="text-sm leading-relaxed"
-        style={{
-          color: "#7a5c4a",
-        }}
-      >
+      <p className="text-sm leading-relaxed text-[#7a5c4a] transition-colors duration-300 group-hover:text-[#2f6167]">
         {description}
       </p>
     </div>
@@ -84,22 +51,22 @@ function TrustCard({ icon: Icon, title, description }) {
 export default function Trust() {
   return (
     <section
-      className="w-full py-16 px-6"
-      style={{ backgroundColor: "#FFF0E0" }}
+      className="w-full px-6 py-16"
+      style={{
+        backgroundColor: "#FFF0E0",
+        backgroundImage: `linear-gradient(rgba(255,240,224,0.78), rgba(255,240,224,0.78)), url(${bgImg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
     >
-      {/* Heading */}
       <h2
-        className="text-center text-4xl font-bold mb-12"
+        className="mb-12 text-center text-4xl font-bold"
         style={{ color: "#1a0a00", fontFamily: "Georgia, serif" }}
       >
         Woven With <span style={{ color: "#E8510A" }}>Trust</span>
       </h2>
 
-      {/* Cards Grid */}
-      <div
-        className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        style={{ maxWidth: "1200px" }}
-      >
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {trustItems.map((item) => (
           <TrustCard key={item.title} {...item} />
         ))}

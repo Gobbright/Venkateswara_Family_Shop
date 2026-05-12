@@ -1,5 +1,6 @@
-import React from "react";
+import { useState } from "react";
 import { Headphones, Mail, MapPin, Phone, Send, Shirt, ShoppingBag } from "lucide-react";
+import bgImg from "../assets/Images/bg.png";
 
 const enquiryOptions = [
   "Silk Sarees",
@@ -9,51 +10,87 @@ const enquiryOptions = [
   "Tailoring Service",
 ];
 
+const branches = [
+  {
+    name: "Trichy Branch",
+    address: "Sri Venkateswara Family Shop, Tiruchirappalli, Tamil Nadu 620001",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.928254782591!2d78.6830595!3d10.8168025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf5a09a2db4f1%3A0xc99796d7f5036d41!2sSri%20Venkateswara%20Family%20Shop%20%E2%80%93%20Men%E2%80%99s%2C%20Women%E2%80%99s%20%26%20Kids%20Wear%20%7C%20Trichy!5e0!3m2!1sen!2sin!4v1778240366385!5m2!1sen!2sin",
+  },
+  {
+    name: "Madurai Branch",
+    address: "Sri Venkateswara garments, Madurai, Tamil Nadu",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15719.903593313511!2d78.11655978715821!3d9.935963200000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c513f3c8dfff%3A0x63ea76f754e4feeb!2sSri%20Venkateswara%20garments-%20Men%27s%20wear%2C%20kids%20wear%2C%20ladies%20garments%20%26%20fashion%20accessories!5e0!3m2!1sen!2sin!4v1778240363556!5m2!1sen!2sin",
+  },
+];
+
 const ShopEnquiry = () => {
+  const [activeBranchName, setActiveBranchName] = useState(branches[0].name);
+  const activeBranch =
+    branches.find((branch) => branch.name === activeBranchName) ?? branches[0];
+
   return (
-    <section className="bg-[#FAF0E6] px-4 py-12 md:px-16 md:py-16">
+    <section
+      className="px-4 py-12 md:px-16 md:py-16"
+      style={{
+        backgroundColor: "#FAF0E6",
+        backgroundImage: `linear-gradient(rgba(250,240,230,0.78), rgba(250,240,230,0.78)), url(${bgImg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="mx-auto grid max-w-6xl gap-8 rounded-lg bg-white p-5 shadow-sm md:grid-cols-[0.9fr_1.1fr] md:p-8">
         <div className="flex flex-col justify-between rounded-lg bg-[#4DA7AF] p-6 text-white">
           <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-wide text-orange-200">
-              Shop Enquiry
+              Store Branches
             </p>
             <h2 className="mb-4 text-3xl font-extrabold leading-tight md:text-4xl">
-              Need help choosing the right product?
+              Visit Sri Venkateswara Family Shop
             </h2>
-            <p className="text-sm leading-7 text-white/85 md:text-base">
-              Send your enquiry for product availability, size details, saree collections,
-              festive offers, delivery support, or tailoring questions. Our team will
-              guide you with clear shopping details.
-            </p>
-          </div>
-
-          <div className="mt-8 grid gap-4">
-            <div className="flex items-start gap-3">
-              <Phone className="mt-1 shrink-0 text-orange-200" size={20} />
-              <div>
-                <p className="font-bold">Call Support</p>
-                <a href="tel:+919876543210" className="!no-underline text-white/85 hover:text-orange-200">
-                  +91 98765 43210
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Mail className="mt-1 shrink-0 text-orange-200" size={20} />
-              <div>
-                <p className="font-bold">Email Us</p>
-                <a
-                  href="mailto:care@venkateshwaratextiles.in"
-                  className="!no-underline text-white/85 hover:text-orange-200"
+            <div className="mt-6 grid gap-4">
+              {branches.map((branch) => (
+                <button
+                  key={branch.name}
+                  type="button"
+                  onClick={() => setActiveBranchName(branch.name)}
+                  className={`rounded-lg p-4 text-left transition ${
+                    activeBranchName === branch.name
+                      ? "bg-white text-[#1a0a00] shadow-md"
+                      : "bg-white/12 text-white hover:bg-white/20"
+                  }`}
                 >
-                  care@venkateshwaratextiles.in
-                </a>
-              </div>
+                  <div className="mb-2 flex items-center gap-2">
+                    <MapPin
+                      className={`shrink-0 ${
+                        activeBranchName === branch.name
+                          ? "text-orange-600"
+                          : "text-orange-200"
+                      }`}
+                      size={20}
+                    />
+                    <p className="font-bold">{branch.name}</p>
+                  </div>
+                  <p
+                    className={`text-sm leading-6 ${
+                      activeBranchName === branch.name
+                        ? "text-slate-700"
+                        : "text-white/85"
+                    }`}
+                  >
+                    {branch.address}
+                  </p>
+                </button>
+              ))}
             </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-1 shrink-0 text-orange-200" size={20} />
-              <p className="text-white/85">142, East Masi Street, Trichy, Tamil Nadu 625001</p>
-            </div>
+            <iframe
+              title={`${activeBranch.name} map`}
+              src={activeBranch.mapUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="mt-5 h-56 w-full rounded-lg border-0 bg-white"
+            />
           </div>
         </div>
 
@@ -114,6 +151,36 @@ const ShopEnquiry = () => {
             >
               Send Enquiry <Send size={18} />
             </button>
+
+            <div className="grid gap-4 rounded-lg bg-orange-50 p-4 text-sm text-slate-700">
+              <div className="flex items-start gap-3">
+                <Phone className="mt-1 shrink-0 text-orange-600" size={18} />
+                <div>
+                  <p className="font-bold text-slate-900">Call Support</p>
+                  <a href="tel:+919876543210" className="!no-underline text-slate-700 hover:text-orange-600">
+                    +91 98765 43210
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="mt-1 shrink-0 text-orange-600" size={18} />
+                <div>
+                  <p className="font-bold text-slate-900">Email Us</p>
+                  <a
+                    href="mailto:care@venkateshwaratextiles.in"
+                    className="!no-underline text-slate-700 hover:text-orange-600"
+                  >
+                    care@venkateshwaratextiles.in
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="mt-1 shrink-0 text-orange-600" size={18} />
+                <p>
+                  Mosque Building, 7, Manthai street, Thennur High Rd, opp. to Tennur, Tiruchirappalli, Tamil Nadu 620017
+                </p>
+              </div>
+            </div>
           </form>
         </div>
       </div>

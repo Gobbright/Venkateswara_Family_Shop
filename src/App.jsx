@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './nav/Nav';
 import Footer from './footer/Footer';
-import { FaWhatsapp } from 'react-icons/fa6';
+import FloatingContactButtons from './components/FloatingContactButtons';
 import { usePageTracking } from './hooks/usePageTracking';
 import { routes } from './config/routes';
 
 function App() {
   const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
 
   // Track page views for analytics
   usePageTracking();
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>    
-      <Nav />
+      {!isAdminPage && <Nav />}
       <main className="page-content w-full ">
         <Routes>
           {routes.map((route) => (
@@ -26,16 +27,8 @@ function App() {
           ))}
         </Routes>
       </main>
-      <Footer />
-      <a
-        href="https://wa.me/919876543210?text=Hi%20Sri%20Venkateshwara%20Family%20Shopping%2C%20I%20need%20help%20with%20shopping."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_25px_rgba(37,211,102,0.45)] transition hover:scale-110 hover:bg-gradient-to-r hover:from-[#25D366] hover:to-[#4DA7AF]"
-        aria-label="Chat on WhatsApp"
-      >
-        <FaWhatsapp size={30} />
-      </a>
+      {!isAdminPage && <Footer />}
+      {!isAdminPage && <FloatingContactButtons />}
     </>
   );
 }

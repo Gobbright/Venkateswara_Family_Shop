@@ -130,7 +130,7 @@ const Order = () => {
                 <MapPin size={20} className="text-orange-600" /> Delivery Address
               </div>
               <p className="text-sm leading-6 text-slate-600">
-                142, East Masi Street, Trichy, Tamil Nadu 625001
+                Mosque Building, 7, Manthai street, Thennur High Rd, opp. to Tennur, Tiruchirappalli, Tamil Nadu 620017
               </p>
               <div className="mt-4 flex items-center gap-2 text-sm font-bold text-slate-700">
                 <CreditCard size={18} className="text-[#4DA7AF]" /> Online payment confirmed

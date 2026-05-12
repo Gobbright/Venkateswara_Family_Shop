@@ -1,6 +1,14 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Heart, Minus, Plus, ShoppingCart } from "lucide-react";
 import shirt from '../assets/Images/Mens/Shirt/shirt.webp';
+import { getShopItems, toggleShopItem } from "../utils/shopItems";
+
 export default function Product() {
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState("M");
   const product = {
+    slug: "classic-cotton-shirt",
     name: "Classic Cotton Shirt",
     category: "Mens",
     image: shirt,
@@ -9,22 +17,28 @@ export default function Product() {
     reviews: 112,
     discount: 31,
   };
+  const [wishlisted, setWishlisted] = useState(() =>
+    getShopItems("wishlist").some((item) => item.slug === product.slug)
+  );
+  const [addedToCart, setAddedToCart] = useState(() =>
+    getShopItems("cart").some((item) => item.slug === product.slug)
+  );
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-[#f5ede3] p-3 sm:p-4 md:p-6">
-      <div className="mb-4 shrink-0 text-center">
+    <div className="min-h-screen bg-[#f5ede3] p-3 sm:p-4 md:p-6">
+      <div className="mb-4 text-center">
         <h1 className="text-2xl font-semibold md:text-4xl">Product Details</h1>
         <p className="mt-1 text-sm text-gray-600 md:text-base">
           A closer look at your selected style
         </p>
       </div>
 
-      <div className="grid min-h-0 flex-1 gap-5 overflow-y-auto pr-1 lg:grid-cols-[minmax(0,1fr)_520px]">
-        <div className="flex min-h-[420px] items-center justify-center overflow-hidden rounded-3xl bg-white p-6 shadow-sm">
+      <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[minmax(0,1fr)_500px]">
+        <div className="flex min-h-[520px] items-center justify-center overflow-hidden rounded-3xl bg-white p-6 shadow-sm lg:self-start">
           <img
             src={product.image}
             alt={product.name}
-            className="h-full max-h-[620px] w-full object-contain"
+            className="h-full max-h-[580px] w-full max-w-[680px] object-contain"
           />
         </div>
 
@@ -35,10 +49,17 @@ export default function Product() {
             </span>
             <button
               type="button"
+              onClick={() => {
+                setWishlisted(toggleShopItem("wishlist", product));
+              }}
               aria-label={`Add ${product.name} to wishlist`}
-              className="text-3xl leading-none text-gray-900 transition hover:text-orange-600"
+              className={`wishlist-button flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-white shadow-md transition duration-300 hover:text-orange-600 ${
+                wishlisted
+                  ? "wishlist-button-active text-red-500"
+                  : "text-gray-900"
+              }`}
             >
-              {"\u2661"}
+              <Heart size={24} className={wishlisted ? "fill-current" : ""} />
             </button>
           </div>
 
@@ -75,7 +96,12 @@ export default function Product() {
                 <button
                   key={size}
                   type="button"
-                  className="h-11 min-w-11 rounded-full border border-black/20 bg-white px-4 text-sm font-semibold text-gray-900 transition hover:border-black"
+                  onClick={() => setSelectedSize(size)}
+                  className={`h-11 min-w-11 rounded-full border px-4 text-sm font-semibold transition ${
+                    selectedSize === size
+                      ? "border-orange-600 bg-orange-600 text-white shadow-md"
+                      : "border-black/20 bg-white text-gray-900 hover:border-orange-600 hover:bg-orange-50"
+                  }`}
                 >
                   {size}
                 </button>
@@ -88,19 +114,52 @@ export default function Product() {
             made for regular wear. This is dummy product detail content.
           </p>
 
+          <div className="mt-6">
+            <p className="text-sm font-semibold text-gray-950">Quantity</p>
+            <div className="mt-3 inline-flex items-center overflow-hidden rounded-full border border-orange-200 bg-white shadow-sm">
+              <button
+                type="button"
+                onClick={() => setQuantity((current) => Math.max(1, current - 1))}
+                className="flex h-11 w-12 items-center justify-center text-gray-900 transition hover:bg-orange-50 hover:text-orange-600"
+                aria-label="Decrease quantity"
+              >
+                <Minus size={18} />
+              </button>
+              <span className="flex h-11 min-w-14 items-center justify-center border-x border-orange-100 px-4 text-base font-bold text-gray-950">
+                {quantity}
+              </span>
+              <button
+                type="button"
+                onClick={() => setQuantity((current) => current + 1)}
+                className="flex h-11 w-12 items-center justify-center text-gray-900 transition hover:bg-orange-50 hover:text-orange-600"
+                aria-label="Increase quantity"
+              >
+                <Plus size={18} />
+              </button>
+            </div>
+          </div>
+
           <div className="mt-7 grid grid-cols-2 gap-3">
             <button
               type="button"
-              className="h-12 rounded-full border border-black/20 bg-white px-5 text-base font-semibold text-gray-900 transition hover:border-black hover:bg-gray-50"
+              onClick={() => {
+                setAddedToCart(toggleShopItem("cart", { ...product, quantity }));
+              }}
+              className={`flex h-12 items-center justify-center gap-2 rounded-full border px-5 text-base font-semibold transition ${
+                addedToCart
+                  ? "border-orange-600 bg-orange-600 text-white"
+                  : "border-black/20 bg-white text-gray-900 hover:border-black hover:bg-gray-50"
+              }`}
             >
-              Add Cart
+              <ShoppingCart size={18} />
+              {addedToCart ? "Added" : "Add Cart"}
             </button>
-            <button
-              type="button"
-              className="h-12 rounded-full bg-black px-5 text-base font-semibold text-white transition hover:bg-orange-600"
+            <Link
+              to="/order"
+              className="flex h-12 items-center justify-center rounded-full bg-black px-5 text-base font-semibold text-white !no-underline transition hover:bg-orange-600"
             >
               Buy Now
-            </button>
+            </Link>
           </div>
 
           <div className="mt-6 grid gap-3 text-sm font-medium text-gray-700">

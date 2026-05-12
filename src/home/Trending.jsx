@@ -5,6 +5,7 @@ import img1 from "../assets/Images/Trend/1.png";
 import img2 from "../assets/Images/Trend/2.png";
 import img3 from "../assets/Images/Trend/3.png";
 import img4 from "../assets/Images/Trend/4.png";
+import bgImg from "../assets/Images/bg.png";
 
 const products = [
   {
@@ -151,7 +152,15 @@ const ProductCard = ({ product }) => {
 
 export default function Trending() {
   return (
-    <section className="w-full py-14 px-4 md:px-10" style={{ backgroundColor: "#FAF5EE" }}>
+    <section
+      className="w-full py-14 px-4 md:px-10"
+      style={{
+        backgroundColor: "#FAF5EE",
+        backgroundImage: `linear-gradient(rgba(250,245,238,0.78), rgba(250,245,238,0.78)), url(${bgImg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="text-center mb-3">
         <h2 className="text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: "'Georgia', serif" }}>
           Trending Now
