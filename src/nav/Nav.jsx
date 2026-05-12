@@ -22,7 +22,6 @@ const Nav = () => {
   const otherLinks = [
     { name: "All Categories", path: "/categories" },
     { name: "Accessories", path: "/accessories" },
-    { name: "Weekly Offers", path: "/today-deals" },
     { name: "Festive Wear", path: "/festive-wear" },
     // { name: "Tailoring", path: "/ot  her/tailoring" },
     { name: "About", path: "/other/about" },

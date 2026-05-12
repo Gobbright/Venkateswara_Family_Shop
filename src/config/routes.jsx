@@ -13,7 +13,6 @@ import Wishlist from '../other/wishlist/Wishlist';
 import Product from '../product-details/Product';
 import VideoCall from '../other/video-call/VideoCall';
 import Auth from '../other/auth/Auth';
-import TodayDeals from '../deals/TodayDeals';
 import CategoriesPage from '../categories/CategoriesPage';
 import Admin from '../Admin/Admin';
 
@@ -26,7 +25,6 @@ export const routes = [
   { path: '/kids', element: <Kids />, name: 'Kids' },
   { path: '/categories', element: <CategoriesPage />, name: 'All Categories' },
   { path: '/festive-wear', element: <FestiveWear />, name: 'Festive Wear' },
-  { path: '/today-deals', element: <TodayDeals />, name: 'Weekly Offers' },
   { path: '/product/:id', element: <Product />, name: 'Product Details' },
   { path: '/cart', element: <Cart />, name: 'Cart' },
   { path: '/wishlist', element: <Wishlist />, name: 'Wishlist' },

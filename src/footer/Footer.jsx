@@ -69,7 +69,6 @@ const Footer = () => {
           <Link to="/womens" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Women</Link>
           <Link to="/kids" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Kids</Link>
           <Link to="/accessories" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Accessories</Link>
-          <Link to="/today-deals" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Weekly Offers</Link>
           <Link to="/festive-wear" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Festive Wear</Link>
           <Link to="/order/track" className="!no-underline text-white/80 hover:text-orange-300 text-base transition">Track Order</Link>
         </div>

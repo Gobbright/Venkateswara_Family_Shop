@@ -1,6 +1,5 @@
 import React from 'react';
 import Hero from './Hero.jsx';
-import Offers from './Offers.jsx';
 import Trust from './Trust.jsx';
 import Categories from './Categories.jsx';
 import Trending from './Trending.jsx';
@@ -16,7 +15,6 @@ const Home = () => {
       <Trending />
       {/* <BrandBand /> */}
       <Collection />
-      <Offers />
       <Trust />
       <ShopEnquiry />
     </div>

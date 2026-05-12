@@ -4,7 +4,6 @@ import img1 from "../assets/Images/Categories/1.png";
 import img2 from "../assets/Images/Categories/2.png";
 import img3 from "../assets/Images/Categories/3.png";
 import img4 from "../assets/Images/Categories/4.png";
-import img5 from "../assets/Images/Categories/5.png";
 import img6 from "../assets/Images/Categories/6.png";
 import bgImg from "../assets/Images/bg.png";
 
@@ -13,7 +12,6 @@ const categories = [
   { id: 2, name: "Men's Wear", image: img2, path: "/mens" },
   { id: 3, name: "Kids Collection", image: img3, path: "/kids" },
   { id: 4, name: "Festive Wear", image: img4, path: "/festive-wear" },
-  { id: 5, name: "Weekly Offers", image: img5, path: "/today-deals" },
   { id: 6, name: "Accessories", image: img6, path: "/accessories" },
 ];
 
@@ -178,13 +176,12 @@ export default function Categories() {
           <div className="flex-1 grid grid-cols-2 gap-4">
             <Card cat={categories[1]} className="h-[200px]" />
             <Card cat={categories[2]} className="h-[200px]" />
-            <Card cat={categories[3]} className="h-[200px]" />
-            <Card cat={categories[4]} className="h-[200px]" />
+            <Card cat={categories[3]} className="col-span-2 h-[200px]" />
           </div>
 
           {/* Accessories — narrow tall card */}
           <div className="flex-none" style={{ width: "120px" }}>
-            <Card cat={categories[5]} className="w-full h-[416px]" />
+            <Card cat={categories[4]} className="w-full h-[416px]" />
           </div>
 
         </div>
