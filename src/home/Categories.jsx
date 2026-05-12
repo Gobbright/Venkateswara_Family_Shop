@@ -11,7 +11,7 @@ const categories = [
   { id: 1, name: "Women's Wear", image: img1, path: "/womens" },
   { id: 2, name: "Men's Wear", image: img2, path: "/mens" },
   { id: 3, name: "Kids Collection", image: img3, path: "/kids" },
-  { id: 4, name: "Festive Wear", image: img4, path: "/festive-wear" },
+  { id: 4, name: "Festive Wear", image: img4, path: "/festive-wear", imagePosition: "center 25%" },
   { id: 6, name: "Accessories", image: img6, path: "/accessories" },
 ];
 
@@ -64,7 +64,10 @@ const Card = ({ cat, className }) => {
         src={cat.image}
         alt={cat.name}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
-        style={{ transform: hovered ? "scale(1.06)" : "scale(1)" }}
+        style={{
+          objectPosition: cat.imagePosition || "center",
+          transform: hovered ? "scale(1.06)" : "scale(1)",
+        }}
       />
       <div className="absolute inset-0" style={gradientOverlay} />
 
